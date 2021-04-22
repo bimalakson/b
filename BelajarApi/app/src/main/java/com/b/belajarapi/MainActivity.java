@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("1");
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("loading");
         progressDialog.show();
@@ -40,14 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<List<PhotoData>> call, Response<List<PhotoData>> response) {
-                System.out.println("2");
                 progressDialog.dismiss();
                 generateDataList(response.body());
             }
 
             @Override
             public void onFailure(Call<List<PhotoData>> call, Throwable t) {
-                System.out.println("3");
                 progressDialog.dismiss();
                 Toast.makeText(MainActivity.this, "Ada yang salah... Tolong Coba Lagi", Toast.LENGTH_SHORT).show();
             }
